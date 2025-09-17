@@ -15,12 +15,12 @@ namespace Demo
             Country country4 = new Country() { Code = "GBR", Name = "UNITED KINGDOM", Capital = "London" };
             Country country5 = new Country() { Code = "CAN", Name = "CANADA", Capital = "Ottawa" };
 
-            List<Country> listCountries = new List<Country>();
-            listCountries.Add(country1);
-            listCountries.Add(country2);
-            listCountries.Add(country3);
-            listCountries.Add(country4);
-            listCountries.Add(country5);
+            Dictionary<string,Country> dictionaryCountries = new Dictionary<string,Country>();
+            dictionaryCountries.Add(country1.Code, country1);
+            dictionaryCountries.Add(country2.Code, country2);
+            dictionaryCountries.Add(country3.Code, country3);
+            dictionaryCountries.Add(country4.Code, country4);
+            dictionaryCountries.Add(country5.Code, country5);
 
             string strUserChoice = string.Empty;
 
@@ -28,7 +28,7 @@ namespace Demo
                 Console.WriteLine("Please enter country code");
                 string strCountryCode = Console.ReadLine().ToUpper();
 
-                Country resultCountry = listCountries.Find(country => country.Code == strCountryCode);
+                Country resultCountry = dictionaryCountries.ContainsKey(strCountryCode) ? dictionaryCountries[strCountryCode] : null;
 
                 if (resultCountry == null)
                 {
